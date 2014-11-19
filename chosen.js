@@ -37,6 +37,9 @@
 
         element.addClass('localytics-chosen');
         options = scope.$eval(attr.chosen) || {};
+        if(!attr.required && !attr.multiple){
+          options[snakeCase('allowSingleDeselect')] = true;
+        }
         angular.forEach(attr, function(value, key) {
           if (__indexOf.call(CHOSEN_OPTION_WHITELIST, key) >= 0) {
             return options[snakeCase(key)] = scope.$eval(value);
