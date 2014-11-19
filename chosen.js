@@ -56,7 +56,7 @@
             return element.trigger('chosen:updated');
           } else {
             chosen = element.chosen(options).data('chosen');
-            return defaultText = chosen.default_text;
+            return defaultText = chosen ? chosen.default_text : '';
           }
         };
         removeEmptyMessage = function() {
@@ -65,7 +65,8 @@
         };
         disableWithMessage = function() {
           empty = true;
-          return element.attr('data-placeholder', chosen.results_none_found).attr('disabled', true).trigger('chosen:updated');
+          var resultsNotFound = chosen ? chosen.results_none_found : '';
+          return element.attr('data-placeholder', resultsNotFound).attr('disabled', true).trigger('chosen:updated');
         };
         if (ngModel) {
           origRender = ngModel.$render;
